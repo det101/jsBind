@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binding Hello</title>
+    <script src="../bundle.js"></script>
+
+</head>
+<body>
+    <input id="input1">   </input>
+    <input id="input2">   </input>
+    <div id="myDiv"></div>
+    <script>
+        var data = {val: {d:12}};
+        let input1 = document.getElementById('input1');
+        let input2 = document.getElementById('input2');
+        let myDiv = document.getElementById('myDiv');
+        BindingUtils.bindProperty(myDiv, 'innerHTML', data, ['val','d']);
+        BindingUtils.bindProperty(input2, 'value', data, ['val','d']);
+        BindingUtils.bindSetter(function(vaule) {
+            if(vaule > 500) {
+                input1.value = vaule;
+            }
+
+        }, data, ['val','d']);
+        setInterval(function() {
+//            data.val.d += 100;
+            data.val = {d : Math.floor(Math.random()*1000)};
+        } ,1000);
+    </script>
+</body>
+</html>
