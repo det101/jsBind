@@ -1,9 +1,8 @@
 /**
  * Created by luxiaolong on 2017/7/11.
  */
-var watherHander = {};
+var watcherHandlers = {};
 class Watcher {
-
     // 构造
     constructor(access, callBackFun, $next) {
         var host;
@@ -58,9 +57,7 @@ class Watcher {
                 console.log('');
             }
         };
-
-
-
+        
     }
 
     static watch(host, chain, callBackFun) {
@@ -79,7 +76,7 @@ class Watcher {
     }
 
     static remove(obj, name, callBack) {
-        let objWatch = watherHander[obj];
+        let objWatch = watcherHandlers[obj];
         if(objWatch) {
             let arr = objWatch[name];
             const index = arr.indexOf(callBack);
@@ -90,10 +87,10 @@ class Watcher {
     }
 
     static add(obj, name, callBack) {
-        if(!watherHander[obj]) {
-            watherHander[obj] = {};
+        if(!watcherHandlers[obj]) {
+            watcherHandlers[obj] = {};
         }
-        let objWatch = watherHander[obj];
+        let objWatch = watcherHandlers[obj];
         if(!objWatch[name]) {
 
             objWatch[name] = [callBack];
@@ -107,10 +104,10 @@ class Watcher {
     }
 
     static update(obj, name) {
-        if(!watherHander[obj]) {
+        if(!watcherHandlers[obj]) {
             return;
         }
-        let objWatch = watherHander[obj];
+        let objWatch = watcherHandlers[obj];
         if(!objWatch[name]) {
             return;
         }else {
@@ -123,7 +120,6 @@ class Watcher {
     }
 
     static bind(obj, name) {
-        //console.log(obj, name);
         var value = obj[name];
         try {
             Object.defineProperty(obj, name, {
@@ -135,8 +131,6 @@ class Watcher {
                     if(value != newValue) {
                         value = newValue;
                         Watcher.update(obj, name);
-                        obj[name] = value;
-                        //console.log(obj, name, value);
                     }
                 },
 
