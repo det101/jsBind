@@ -1,8 +1,8 @@
 {
-  "name": "js-bind-utils",
+  "name": "jsbinding",
   "version": "0.1.2",
   "description": "",
-  "main": "index.js",
+  "main": "jsbinding.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --env=dev --progress --profile --colors",

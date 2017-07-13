@@ -7,7 +7,7 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
-    entry: './src/index.js',
+    entry: './src/jsbinding.js',
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),

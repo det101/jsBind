@@ -7,7 +7,7 @@ var webpack = require('webpack');
 var ZipPlugin = require('zip-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/jsbinding.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         //libraryTarget: "umd"
