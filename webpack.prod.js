@@ -7,13 +7,15 @@ var webpack = require('webpack');
 var ZipPlugin = require('zip-webpack-plugin');
 
 module.exports = {
-    entry: './src/jsbinding.js',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         //libraryTarget: "umd"
         filename: '[name].bundle.js',
         publicPath: '/',
-        sourceMapFilename: '[name].map'
+        sourceMapFilename: '[name].map',
+        library: 'BindingUtils',
+        libraryTarget: "umd"
     },
 
     //devtool: 'cheap-module-source-map',

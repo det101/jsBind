@@ -7,12 +7,13 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
-    entry: './src/jsbinding.js',
+    entry: './src/index.js',
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: "/",
-        //libraryTarget: "umd"
+        publicPath: "/dist",
+        library: 'BindingUtils',
+        libraryTarget: "umd"
     },
 
     module: {

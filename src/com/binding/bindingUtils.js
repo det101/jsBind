@@ -28,4 +28,7 @@ class BindingUtils {
     }
 }
 
+var namex = {a: 123};
+export { namex };
+
 export default BindingUtils;

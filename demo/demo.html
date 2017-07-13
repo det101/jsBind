@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Binding Hello</title>
-    <script src="../bundle.js"></script>
-
+    <!--<script src="../main.bundle.js"></script>-->
+    <!--<script src="../src/index.js"></script>-->
+    <script type="text/javascript" src="../dist/main.bundle.js"></script>
 </head>
 <body>
     <input id="input1">   </input>
     <input id="input2">   </input>
     <div id="myDiv"></div>
     <script>
+
         var data = {val: {d:12}};
         let input1 = document.getElementById('input1');
         let input2 = document.getElementById('input2');
         let myDiv = document.getElementById('myDiv');
-        BindingUtils.bindProperty(myDiv, 'innerHTML', data, ['val','d']);
+
+        myDiv.addEventListener('click', function() {
+            watcher.unwatch();
+        });
+        let watcher = BindingUtils.bindProperty(myDiv, 'innerHTML', data, ['val','d']);
         BindingUtils.bindProperty(input2, 'value', data, ['val','d']);
         BindingUtils.bindSetter(function(vaule) {
             if(vaule > 500) {
@@ -24,7 +30,6 @@
 
         }, data, ['val','d']);
         setInterval(function() {
-//            data.val.d += 100;
             data.val = {d : Math.floor(Math.random()*1000)};
         } ,1000);
     </script>
