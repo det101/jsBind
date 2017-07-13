@@ -1,8 +1,12 @@
 {
-  "name": "jsbinding",
-  "version": "0.1.2",
+  "name": "js-bind-utils",
+  "version": "0.1.3",
   "description": "",
-  "main": "jsbinding.js",
+  "main": "  distribution/com/binding/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/det101/jsBind.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --env=dev --progress --profile --colors",
