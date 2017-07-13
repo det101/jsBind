@@ -2,7 +2,7 @@
   "name": "js-bind-utils",
   "version": "0.1.3",
   "description": "",
-  "main": "  distribution/com/binding/index.js",
+  "main": "  distribution/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/det101/jsBind.git"
