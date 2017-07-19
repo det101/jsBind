@@ -9,7 +9,7 @@ class BindingUtils {
      * mode = 1 Object.defineProperty绑定，只支持dom绑定data 不支持ie8
      */
     static initMode(mode = 0) {
-        Watcher.switchMode(mode)
+        Watcher.switchMode(mode);
     }
 
     static bindProperty(site, prop, host, chain) {
@@ -36,6 +36,5 @@ class BindingUtils {
         return w;
     }
 }
-
 
 export default BindingUtils;
