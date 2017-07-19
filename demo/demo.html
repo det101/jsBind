@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Binding Hello</title>
-    <!--<script src="../main.bundle.js"></script>-->
-    <!--<script src="../src/index.js"></script>-->
     <script type="text/javascript" src="../dist/main.bundle.js"></script>
 </head>
 <body>
@@ -13,9 +11,9 @@
     <div id="myDiv"></div>
     <script>
 
-        var data = {val: {d:12}};
-        var data2 = {a: 1};
-        var data3 = {a: 200};
+        var data = {first: {value:12}};
+        var data2 = {value: 1};
+        var data3 = {value: 200};
         let input1 = document.getElementById('input1');
         let input2 = document.getElementById('input2');
         let myDiv = document.getElementById('myDiv');
@@ -24,22 +22,17 @@
             watcher.unwatch();
         });
         let watcher = BindingUtils.bindProperty(myDiv, 'innerHTML', data3, ['a']);
-        var i = 10000;
-        while(i > 0) {
-            BindingUtils.bindProperty(input2, 'value', data2, ['a']);
-            i--;
-        }
 
         BindingUtils.bindSetter(function(vaule) {
             if(vaule > 500) {
                 input1.value = vaule;
             }
 
-        }, data, ['val','d']);
+        }, data, ['first','value']);
         setInterval(function() {
-            data.val = {d : Math.floor(Math.random()*1000)};
-            data2.a += 1;
-            data3.a += 1;
+            data.first = {value : Math.floor(Math.random()*1000)};
+            data2.value += 1;
+            data3.value += 1;
         } ,1000);
     </script>
 </body>

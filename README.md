@@ -1,27 +1,46 @@
-ndingUtils
-主要参考flex绑定方式实现的dom和数据绑定一种方式
+##BindingUtils
+Implements the binding between objects and object attributes, including DOM
 
-###使用
+###Installation
 npm install --save js-bind-utils
+
+###Getting Started
 
 ```
 import BindingUtils from 'js-bind-utils';
-		
-		let watcher = BindingUtils.bindProperty(myDiv1, 'innerHTML', data, ['val','d']);	 //数据绑定
-		
-		let watcher = BindingUtils.bindProperty(myDiv1, 'innerHTML', myDiv2, 'innerHTML'); //dom之间也能绑定
-		                
-		BindingUtils.bindSetter(function(vaule) {
-            if(vaule.length > 10) {
-                console.log('绑定的数据长度大于10');
-                myDiv2.innerHTML = value;
-            }
+	
+var data = {first: {value:12}};
+var data2 = {value: 1};
+var data3 = {value: 200};
+let input1 = document.getElementById('input1');
+let input2 = document.getElementById('input2');
+let myDiv = document.getElementById('myDiv');
+	
+let watcher = BindingUtils.bindProperty(myDiv, 'innerHTML', data3, ['a']);	//binding between dom and data
+myDiv.addEventListener('click', function() {
+    watcher.unwatch();		//remove watch
+});
 
-        }, data, ['val','d']);	//setter 处理
+BindingUtils.bindProperty(myDiv, 'innerHTML', input, 'value');		//binding between dom
+	
+BindingUtils.bindSetter(function(vaule) {
+    if(vaule > 500) {
+        input1.value = vaule;
+    }
+	
+}, data, ['first','value']);  //binding setting callback
         
-        watcher.unwatch();  //移除绑定
         
-        
+setInterval(function() {
+    data.first = {value : Math.floor(Math.random()*1000)};
+    data2.value += 1;
+    data3.value += 1;
+} ,1000);        
         
 ```
 
+###Build
+```bash
+npm install	 
+npm run dev   //run demo
+```
