@@ -3,6 +3,7 @@
 Implements the binding between objects and object attributes, including DOM
 
 ###Installation
+
 npm install --save js-bind-utils
 
 ###Getting Started
@@ -41,7 +42,7 @@ setInterval(function() {
 ```
 
 ###Build
-```bash
+```
 npm install	 
 npm run dev   //run demo
 ```
