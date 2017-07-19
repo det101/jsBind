@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/det101/jsBind.svg?branch=master)](https://travis-ci.org/det101/jsBind)
+
 ##BindingUtils
 
 Implements the binding between objects and object attributes, including DOM
