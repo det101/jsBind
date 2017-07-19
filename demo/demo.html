@@ -12,8 +12,6 @@
     <script>
 
         var data = {first: {value:12}};
-        var data2 = {value: 1};
-        var data3 = {value: 200};
         let input1 = document.getElementById('input1');
         let input2 = document.getElementById('input2');
         let myDiv = document.getElementById('myDiv');
@@ -21,7 +19,7 @@
         myDiv.addEventListener('click', function() {
             watcher.unwatch();
         });
-        let watcher = BindingUtils.bindProperty(myDiv, 'innerHTML', data3, ['a']);
+        let watcher = BindingUtils.bindProperty(myDiv, 'innerHTML', data, ['first','value']);
 
         BindingUtils.bindSetter(function(vaule) {
             if(vaule > 500) {
@@ -29,11 +27,10 @@
             }
 
         }, data, ['first','value']);
-        setInterval(function() {
-            data.first = {value : Math.floor(Math.random()*1000)};
-            data2.value += 1;
-            data3.value += 1;
-        } ,1000);
+
+        BindingUtils.bindProperty(input2, 'value', input1, 'value');
+        BindingUtils.bindProperty(input1, 'value', input2, 'value');
+        BindingUtils.bindProperty(data.first, 'value', input2, 'value');
     </script>
 </body>
 </html>

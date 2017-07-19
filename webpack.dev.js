@@ -4,6 +4,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
@@ -46,5 +47,9 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+        new OpenBrowserPlugin({ url: 'http://localhost:8080' })
+    ]
 
 };

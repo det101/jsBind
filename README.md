@@ -47,4 +47,5 @@ setInterval(function() {
 ```
 npm install	 
 npm run dev   //run demo
+Browser opens http://localhost:8080/webpack-dev-server/demo/demo.html
 ```
