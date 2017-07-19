@@ -1,14 +1,14 @@
 [![Build Status](https://travis-ci.org/det101/jsBind.svg?branch=master)](https://travis-ci.org/det101/jsBind)
 
-##BindingUtils
+## BindingUtils
 
 Implements the binding between objects and object attributes, including DOM
 
-###Installation
+### Installation
 
 npm install --save js-bind-utils
 
-###Getting Started
+### Getting Started
 
 ```
 import BindingUtils from 'js-bind-utils';
@@ -43,9 +43,11 @@ setInterval(function() {
         
 ```
 
-###Build
+### Build
+
 ```
 npm install	 
 npm run dev   //run demo
 Browser opens http://localhost:8080/webpack-dev-server/demo/demo.html
+
 ```
