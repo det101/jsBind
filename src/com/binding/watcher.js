@@ -1,7 +1,13 @@
 /**
  * Created by luxiaolong on 2017/7/11.
+ * 用defineProperty方式绑定
  */
-var watcherHandlers = {};
+
+import WatchEvent from './watchEvent';
+import WatchEnter from './watchEnter';
+
+var WatchEventProxy = Object.defineProperty ? WatchEvent : WatchEnter;
+WatchEventProxy = WatchEnter;
 class Watcher {
     // 构造
     constructor(access, callBackFun, $next) {
@@ -14,11 +20,11 @@ class Watcher {
 
         this.reset = (newHost) => {
             if(host) {
-                Watcher.remove(host, name, wrapHandler);
+                WatchEventProxy.remove(host, name, wrapHandler);
             }
             host = newHost;
             if(host) {
-                Watcher.add(host, name, wrapHandler);
+                WatchEventProxy.add(host, name, wrapHandler);
             }
             if(next) {
                 next.reset(getHostPropertyValue());
@@ -54,10 +60,21 @@ class Watcher {
                 console.log(e);
             }
             finally {
-                console.log('');
+                //
             }
         };
         
+    }
+
+    static switchMode(mode) {
+        switch(mode) {
+            case 1:
+                WatchEventProxy = Object.defineProperty ? WatchEvent : WatchEnter;
+                break;
+
+            default:
+                WatchEventProxy = WatchEnter;
+        }
     }
 
     static watch(host, chain, callBackFun) {
@@ -75,72 +92,7 @@ class Watcher {
         }
     }
 
-    static remove(obj, name, callBack) {
-        let objWatch = watcherHandlers[obj];
-        if(objWatch) {
-            let arr = objWatch[name];
-            const index = arr.indexOf(callBack);
-            if(index != -1) {
-                arr.splice(index, 1);
-            }
-        }
-    }
 
-    static add(obj, name, callBack) {
-        if(!watcherHandlers[obj]) {
-            watcherHandlers[obj] = {};
-        }
-        let objWatch = watcherHandlers[obj];
-        if(!objWatch[name]) {
-
-            objWatch[name] = [callBack];
-        }else {
-            if(objWatch[name].indexOf(callBack) == -1) {
-                objWatch[name].push(callBack);
-            }
-        }
-
-        Watcher.bind(obj, name);
-    }
-
-    static update(obj, name) {
-        if(!watcherHandlers[obj]) {
-            return;
-        }
-        let objWatch = watcherHandlers[obj];
-        if(!objWatch[name]) {
-            return;
-        }else {
-            if(objWatch[name].length > 0) {
-                objWatch[name].forEach((call) => {
-                    call(obj[name]);
-                });
-            }
-        }
-    }
-
-    static bind(obj, name) {
-        var value = obj[name];
-        try {
-            Object.defineProperty(obj, name, {
-
-                get: function() {
-                    return value;
-                },
-                set: function(newValue) {
-                    if(value != newValue) {
-                        value = newValue;
-                        Watcher.update(obj, name);
-                    }
-                },
-
-                enumerable: true,
-                configurable: true
-            });
-        } catch (error) {
-            console.log('browser not supported.');
-        }
-    }
 }
 
 export default Watcher;
