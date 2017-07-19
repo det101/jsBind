@@ -8,7 +8,7 @@
     "url": "https://github.com/det101/jsBind.git"
   },
   "scripts": {
-    "test": "webpak",
+    "test": "webpack",
     "dev": "webpack-dev-server --env=dev --progress --profile --colors",
     "dist": "webpack --env=prod -p --progress --profile --colors",
     "build-dev": "webpack --env=dev --progress --profile --colors",
