@@ -1,4 +1,5 @@
 ##BindingUtils
+
 Implements the binding between objects and object attributes, including DOM
 
 ###Installation
